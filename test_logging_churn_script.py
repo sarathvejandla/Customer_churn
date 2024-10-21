@@ -12,8 +12,7 @@ logging.basicConfig(
 @pytest.fixture()
 def get_dataframe():
     df = import_data("./data/bank_data.csv")
-    updated_df = perform_eda(df)
-    return updated_df
+    return df
 
 @pytest.fixture()
 def get_updated_df(get_dataframe):
@@ -21,8 +20,8 @@ def get_updated_df(get_dataframe):
     return updated_df
 
 @pytest.fixture()
-def get_train_test(get_updated_df):
-	features_train, features_test, label_train, label_test = perform_feature_engineering(get_updated_df, 'Churn')
+def get_train_test(get_dataframe):
+	features_train, features_test, label_train, label_test = perform_feature_engineering(get_dataframe, 'Churn')
 	return features_train, features_test, label_train, label_test
 
 def test_import():
@@ -51,13 +50,13 @@ def test_eda(get_dataframe):
 
 	perform_eda(get_dataframe)
 	try:
-		os.path.isfile('./Customer_churn/images/eda/correlation_chart.png')
+		assert os.path.isfile('./images/eda/correlation_chart.png')
 		logging.info("Testing EDA function : EDA files saved : SUCCESS")
-	except OSError:
+	except AssertionError:
 		logging.error("Testing EDA function : EDA files not saved successfully : ERROR")
 	    
 
-def test_encoder_helper(get_updated_df):
+def test_encoder_helper(get_dataframe):
 	'''
 	test encoder helper
 	'''
@@ -80,8 +79,9 @@ def test_encoder_helper(get_updated_df):
     ]
 
 	try:
-		encoded_df = encoder_helper(get_updated_df, cat_columns, 'Churn')
-		assert all(encoded_columns in encoded_df.columns for column_name in encoded_columns)
+		encoded_df = encoder_helper(get_dataframe, cat_columns, 'Churn')
+#		assert sum([encoded_columns in encoded_df.columns for column_name in encoded_columns]) == 5
+		assert len([col for col in encoded_columns if col in encoded_df.columns]) == 5
 		logging.info("Testing encoder helper function: encoded columns present in df: SUCCESS")
 	except AssertionError as err:
 		logging.error("Testing encoder helper function: encoded columns not present in df: ERROR")
@@ -89,7 +89,7 @@ def test_encoder_helper(get_updated_df):
     
 	for col in encoded_columns:
 		try:
-			assert encoded_df.shape[col] > 0
+			assert encoded_df[col].shape[0] > 0
 			logging.info("Testing encoder_helper function: %s field have data : SUCCESS", col)
 		except AssertionError as err:
 			logging.error("Testing encoder_helper function: %s field doesn't appear to have data : ERROR", col)
@@ -97,14 +97,14 @@ def test_encoder_helper(get_updated_df):
 
 
 
-def test_perform_feature_engineering(get_updated_df):
+def test_perform_feature_engineering(get_dataframe):
 	'''
 	test perform_feature_engineering
 	'''
 	df = get_dataframe
 
 	try:
-		features_train, features_test, label_train, label_test = perform_feature_engineering(get_updated_df, 'Churn')
+		features_train, features_test, label_train, label_test = perform_feature_engineering(get_dataframe, 'Churn')
 		logging.info("Feature engineering: SUCCESS")
 	except FileNotFoundError as err:
 		logging.error("Feature engineering: perform_feature_engineering function failed to run : ERROR")
@@ -143,43 +143,43 @@ def test_train_models(get_train_test):
 	'''
 	test train_models
 	'''
-
-	train_models(get_train_test)
+	features_train, features_test, label_train, label_test = get_train_test
+	train_models(features_train, features_test, label_train, label_test)
 
 	try:
-		os.path.isfile('./Customer_churn/images/results/Logistic Regression_classification_report.png')
+		assert os.path.isfile('./images/results/Logistic Regression_classification_report.png')
 		logging.info("Train model : Logistic Regression_classification_report.png file saved : SUCCESS")
-	except OSError:
+	except AssertionError:
 		logging.error("Train model : Logistic Regression_classification_report.png file not saved : ERROR")
 	
 	try:
-		os.path.isfile('./Customer_churn/images/results/Random Forest_classification_report.png')
+		assert os.path.isfile('./images/results/Random Forest_classification_report.png')
 		logging.info("Train model : Random Forest_classification_report.png file saved : SUCCESS")
-	except OSError:
+	except AssertionError:
 		logging.error("Train model : Random Forest_classification_report.png file not saved : ERROR")
 
 	try:
-		os.path.isfile('./Customer_churn/images/results/roc_curvet.png')
+		assert os.path.isfile('./images/results/roc_curve.png')
 		logging.info("Train model : roc_curve.png file saved : SUCCESS")
-	except OSError:
+	except AssertionError:
 		logging.error("Train model : roc_curve.png file not saved : ERROR")
 	
 	try:
-		os.path.isfile('./Customer_churn/images/results/feature_importance_plot.png')
+		assert os.path.isfile('./images/results/feature_importance_plot.png')
 		logging.info("Train model : feature_importance_plot.png file saved : SUCCESS")
-	except OSError:
+	except AssertionError:
 		logging.error("Train model : feature_importance_plot.png file not saved : ERROR")
 
 	try:
-		os.path.isfile('./Customer_churn/models/logistic_model.pkl')
+		assert os.path.isfile('./models/logistic_model.pkl')
 		logging.info("Train model : logistic_model.pkl file saved : SUCCESS")
-	except OSError:
+	except AssertionError:
 		logging.error("Train model : logistic_model.pkl file not saved : ERROR")
 
 	try:
-		os.path.isfile('./Customer_churn/models/rfc_model.pkl')
+		assert os.path.isfile('./models/rfc_model.pkl')
 		logging.info("Train model : rfc_model.pkl file saved : SUCCESS")
-	except OSError:
+	except AssertionError:
 		logging.error("Train model : rfc_model.pkl file not saved : ERROR")
 
 if __name__ == "__main__":

@@ -1,3 +1,29 @@
 root - INFO - Testing import_data: SUCCESS
 matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
 matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+root - INFO - Testing EDA function : EDA files saved : SUCCESS
+root - INFO - Testing encoder helper function: encoded columns present in df: SUCCESS
+root - INFO - Testing encoder_helper function: Gender_Churn field have data : SUCCESS
+root - INFO - Testing encoder_helper function: Education_Level_Churn field have data : SUCCESS
+root - INFO - Testing encoder_helper function: Marital_Status_Churn field have data : SUCCESS
+root - INFO - Testing encoder_helper function: Income_Category_Churn field have data : SUCCESS
+root - INFO - Testing encoder_helper function: Card_Category_Churn field have data : SUCCESS
+root - INFO - Feature engineering: SUCCESS
+root - INFO - Feature engineering: features_train have data : SUCCESS
+root - INFO - Feature engineering: feature_test have data : SUCCESS
+root - INFO - Feature engineering: label_train have data : SUCCESS
+root - INFO - Feature engineering: label_test have data : SUCCESS
+matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+matplotlib.backends._backend_tk - INFO - Could not load matplotlib icon: bad option "foobar": must be aspect, attributes, client, colormapwindows, command, deiconify, focusmodel, forget, frame, geometry, grid, group, iconbitmap, iconify, iconmask, iconname, iconphoto, iconposition, iconwindow, manage, maxsize, minsize, overrideredirect, positionfrom, protocol, resizable, sizefrom, stackorder, state, title, transient, or withdraw
+root - INFO - Train model : Logistic Regression_classification_report.png file saved : SUCCESS
+root - INFO - Train model : Random Forest_classification_report.png file saved : SUCCESS
+root - INFO - Train model : roc_curve.png file saved : SUCCESS
+root - INFO - Train model : feature_importance_plot.png file saved : SUCCESS
+root - INFO - Train model : logistic_model.pkl file saved : SUCCESS
+root - INFO - Train model : rfc_model.pkl file saved : SUCCESS

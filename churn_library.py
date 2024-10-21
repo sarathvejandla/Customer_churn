@@ -27,7 +27,7 @@ from sklearn.metrics import plot_roc_curve, classification_report
 os.environ['QT_QPA_PLATFORM']='offscreen'
 
 #logging.basicConfig(
-#    filename='./Customer_churn/logs/churn_library.log',
+#    filename='./logs/churn_library.log',
 #    level=logging.INFO,
 #    filemode='w',
 #    format='%(name)s - %(levelname)s - %(message)s') 
@@ -43,6 +43,8 @@ def import_data(pth):
     '''	
     #try:
     df = pd.read_csv(pth)
+    df['Churn'] = df['Attrition_Flag'].apply(lambda val: 0 if val == "Existing Customer" else 1)
+
     #    logging.info("SUCCESS: Loaded data from provided file path")
     return df
     #except FileNotFoundError:
@@ -68,7 +70,7 @@ def plot_features(df, feature_name, chart_type):
     elif chart_type == 'histplot':
         sns.histplot(df[feature_name], stat='density', kde=True)
 
-    plt.savefig('./Customer_churn/images/eda/'+feature_name+'_distribution.png')
+    plt.savefig('./images/eda/'+feature_name+'_distribution.png')
     plt.close()
 
 def perform_eda(df):
@@ -80,8 +82,7 @@ def perform_eda(df):
     output:
             None
     '''
-
-    df['Churn'] = df['Attrition_Flag'].apply(lambda val: 0 if val == "Existing Customer" else 1)
+#    df['Churn'] = df['Attrition_Flag'].apply(lambda val: 0 if val == "Existing Customer" else 1)
 
     plot_features(df, 'Churn', 'hist')
     plot_features(df, 'Customer_Age', 'hist')
@@ -90,7 +91,7 @@ def perform_eda(df):
 
     plt.figure(figsize=(20,10)) 
     sns.heatmap(df.corr(), annot=False, cmap='Dark2_r', linewidths = 2)
-    plt.savefig('./Customer_churn/images/eda/correlation_chart.png')
+    plt.savefig('./images/eda/correlation_chart.png')
     plt.close()
 
  
@@ -206,7 +207,7 @@ def classification_report_image(y_train,
             plt.text(0.01, 0.6, str(j+'Test'), {'fontsize': 10}, fontproperties = 'monospace')
             plt.text(0.01, 0.7, str(classification_report(y_test, i[1])), {'fontsize': 10}, fontproperties = 'monospace') # approach improved by OP -> monospace!
             plt.axis('off')
-            plt.savefig('./Customer_churn/images/results/'+j+'_classification_report.png')
+            plt.savefig('./images/results/'+j+'_classification_report.png')
             plt.close()
 
 
@@ -290,19 +291,18 @@ def train_models(X_train, X_test, y_train, y_test):
     ax = plt.gca()
     rfc_disp = plot_roc_curve(cv_rfc.best_estimator_, X_test, y_test, ax=ax, alpha=0.8)
     lrc_plot.plot(ax=ax, alpha=0.8)
-    plt.show()
-    plt.savefig("./Customer_churn/images/results/roc_curve.png")
+    plt.savefig("./images/results/roc_curve.png")
     plt.close()
 
-    feature_importance_plot(cv_rfc.best_estimator_, X_train, "./Customer_churn/images/results/")
+    feature_importance_plot(cv_rfc.best_estimator_, X_train, "./images/results/")
 
-    joblib.dump(cv_rfc.best_estimator_, './Customer_churn/models/rfc_model.pkl')
-    joblib.dump(lrc, './Customer_churn/models/logistic_model.pkl')
+    joblib.dump(cv_rfc.best_estimator_, './models/rfc_model.pkl')
+    joblib.dump(lrc, './models/logistic_model.pkl')
 
 
 if __name__ == "__main__":
     
-    customer_data = import_data("./Customer_churn/data/bank_data.csv")
+    customer_data = import_data("./data/bank_data.csv")
 
     perform_eda(customer_data)
     
