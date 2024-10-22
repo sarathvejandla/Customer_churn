@@ -25,13 +25,6 @@ sns.set()
 
 os.environ['QT_QPA_PLATFORM'] = 'offscreen'
 
-# logging.basicConfig(
-#    filename='./logs/churn_library.log',
-#    level=logging.INFO,
-#    filemode='w',
-#    format='%(name)s - %(levelname)s - %(message)s')
-
-
 def import_data(pth):
     '''
     returns dataframe for the csv found at pth

@@ -15,13 +15,6 @@ def get_dataframe():
     df = import_data("./data/bank_data.csv")
     return df
 
-
-@pytest.fixture()
-def get_updated_df(get_dataframe):
-    updated_df = perform_eda(get_dataframe)
-    return updated_df
-
-
 @pytest.fixture()
 def get_train_test(get_dataframe):
     features_train, features_test, label_train, label_test = perform_feature_engineering(
@@ -52,6 +45,12 @@ def test_import():
 def test_eda(get_dataframe):
     '''
     test perform eda function
+
+    input: 
+        get_dataframe fixture that has customer data
+
+    output:
+        None
     '''
 
     perform_eda(get_dataframe)
@@ -66,6 +65,11 @@ def test_eda(get_dataframe):
 def test_encoder_helper(get_dataframe):
     '''
     test encoder helper
+
+    input:
+        get_dataframe fixture that has customer data
+
+    output: None
     '''
     #df = pytest.fixture("get_dataframe")
 
@@ -112,6 +116,10 @@ def test_encoder_helper(get_dataframe):
 def test_perform_feature_engineering(get_dataframe):
     '''
     test perform_feature_engineering
+
+    input: get_dataframe fixture that has customer data
+
+    output: None
     '''
     df = get_dataframe
 
@@ -161,6 +169,11 @@ def test_perform_feature_engineering(get_dataframe):
 def test_train_models(get_train_test):
     '''
     test train_models
+
+    input:
+        get_train_test fixture
+
+    output: None
     '''
     features_train, features_test, label_train, label_test = get_train_test
     train_models(features_train, features_test, label_train, label_test)
@@ -213,9 +226,3 @@ def test_train_models(get_train_test):
 
 if __name__ == "__main__":
     pytest.main()
-
-#	test_import(cls.import_data)
-#	test_eda(cls.perform_eda)
-#	test_encoder_helper(cls.encoder_helper)
-#	test_perform_feature_engineering(cls.perform_feature_engineering)
-#	test_train_models(cls.train_models)
